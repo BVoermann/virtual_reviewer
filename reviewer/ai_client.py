@@ -85,7 +85,7 @@ def grade_document(document_text: str, assignment_description: str, model: str) 
 
     Raises RuntimeError on API errors or when the AI response cannot be parsed.
     """
-    api_key = os.environ.get("OPENROUTER_API_KEY")
+    api_key = os.environ.get("OPENROUTER_API_KEY", "").strip()
     if not api_key:
         raise RuntimeError(
             "OPENROUTER_API_KEY ist nicht gesetzt. "
