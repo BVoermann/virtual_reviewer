@@ -6,7 +6,7 @@
 /* --- Design tokens ----------------------------------------- */
 :root {
   --color-primary:       #e2001a;   /* university red */
-  --color-primary-hover: #1d4ed8;
+  --color-primary-hover: #C70219;
   --color-danger:        #dc2626;
   --color-warning-bg:    #fef9c3;
   --color-warning-border:#fde047;
@@ -33,7 +33,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   color: var(--color-text);
@@ -67,14 +67,18 @@ a { color: var(--color-primary); }
 }
 
 .site-title {
-  font-size: 1.4rem;
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.55rem;
   font-weight: 700;
-  letter-spacing: -.02em;
+  letter-spacing: .01em;
 }
 
 .site-subtitle {
-  font-size: .85rem;
-  opacity: .85;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: .88rem;
+  font-weight: 400;
+  letter-spacing: .03em;
+  opacity: .82;
 }
 
 /* --- Main content ------------------------------------------- */

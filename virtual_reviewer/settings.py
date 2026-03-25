@@ -11,10 +11,7 @@ load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get(
-    "DJANGO_SECRET_KEY",
-    "django-insecure-x6q&^cmyuc5o%68v(%!v@90@r94-#nytc(2)y#194egb8o4*ca",
-)
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 DEBUG = True
 
@@ -76,6 +73,9 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
+
+# Destination directory for `collectstatic` (used in the Docker build)
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
