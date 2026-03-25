@@ -5,3 +5,5 @@ db.sqlite3
 docker-compose.yml
 Dockerfile
 virtual_reviewer/settings.py
+reviewer/__pycache__/*
+virtual_reviewer/__pycache__/*
