@@ -1,0 +1,293 @@
+/* ============================================================
+   Virtual Reviewer — main stylesheet
+   Clean, readable, no external dependencies.
+   ============================================================ */
+
+/* --- Design tokens ----------------------------------------- */
+:root {
+  --color-primary:       #e2001a;   /* university red */
+  --color-primary-hover: #1d4ed8;
+  --color-danger:        #dc2626;
+  --color-warning-bg:    #fef9c3;
+  --color-warning-border:#fde047;
+  --color-success-bg:    #dcfce7;
+  --color-text:          #111827;
+  --color-muted:         #6b7280;
+  --color-border:        #e5e7eb;
+  --color-bg:            #f9fafb;
+  --color-card-bg:       #ffffff;
+
+  /* Grade colour palette */
+  --color-grade-a:  #16a34a;   /* green  */
+  --color-grade-b:  #2563eb;   /* blue   */
+  --color-grade-c:  #d97706;   /* amber  */
+  --color-grade-d:  #ea580c;   /* orange */
+  --color-grade-e:  #dc2626;   /* red    */
+  --color-grade-f:  #7f1d1d;   /* dark red */
+
+  --radius: 0.75rem;
+  --shadow: 0 1px 4px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+}
+
+/* --- Reset & base ------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: var(--color-primary); }
+
+/* --- Layout ------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* --- Header ------------------------------------------------- */
+.site-header {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 1rem 0;
+}
+
+.site-header .container {
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+}
+
+.site-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+
+.site-subtitle {
+  font-size: .85rem;
+  opacity: .85;
+}
+
+/* --- Main content ------------------------------------------- */
+main.container { flex: 1; padding-top: 2rem; padding-bottom: 3rem; }
+
+/* --- Footer ------------------------------------------------- */
+.site-footer {
+  background: var(--color-border);
+  color: var(--color-muted);
+  font-size: .8rem;
+  text-align: center;
+  padding: .75rem 0;
+}
+
+/* --- Card --------------------------------------------------- */
+.card {
+  background: var(--color-card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.card__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+
+.card__subtitle {
+  color: var(--color-muted);
+  margin-bottom: 1.75rem;
+  font-size: .95rem;
+}
+
+/* --- Django messages --------------------------------------- */
+.messages {
+  list-style: none;
+  margin-bottom: 1.25rem;
+}
+
+.message {
+  padding: .75rem 1rem;
+  border-radius: .5rem;
+  margin-bottom: .5rem;
+  font-size: .92rem;
+}
+
+.message--error   { background: #fee2e2; border-left: 4px solid var(--color-danger); color: #991b1b; }
+.message--warning { background: var(--color-warning-bg); border-left: 4px solid var(--color-warning-border); }
+.message--success { background: var(--color-success-bg); border-left: 4px solid #22c55e; }
+
+/* --- Buttons ----------------------------------------------- */
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: .5rem;
+  padding: .6rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .15s ease, opacity .15s ease;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn--primary:hover { background: var(--color-primary-hover); }
+
+.btn--large {
+  padding: .85rem 1.75rem;
+  font-size: 1.05rem;
+}
+
+.btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* --- Form -------------------------------------------------- */
+.form-group { margin-bottom: 1.5rem; }
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: .4rem;
+}
+
+.form-hint {
+  display: block;
+  font-size: .8rem;
+  font-weight: 400;
+  color: var(--color-muted);
+  margin-top: .15rem;
+}
+
+.form-hint--center { text-align: center; margin-top: .5rem; }
+
+.form-input {
+  width: 100%;
+  padding: .55rem .85rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: .5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--color-text);
+  background: #fff;
+  transition: border-color .15s;
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+}
+
+.form-input--textarea { resize: vertical; min-height: 160px; }
+
+.form-input--file { padding: .4rem .5rem; cursor: pointer; }
+
+.form-input--select { cursor: pointer; }
+
+.form-actions { margin-top: 1.75rem; text-align: center; }
+
+/* --- Disclaimer page --------------------------------------- */
+.disclaimer-card { max-width: 640px; margin: 0 auto; }
+
+.disclaimer-icon {
+  font-size: 3rem;
+  text-align: center;
+  margin: 1rem 0 1.25rem;
+}
+
+.disclaimer-text p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+.disclaimer-card form { margin-top: 2rem; text-align: center; }
+
+/* --- Grade grid -------------------------------------------- */
+.grade-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+
+@media (max-width: 520px) {
+  .grade-grid { grid-template-columns: 1fr; }
+}
+
+.grade-box {
+  text-align: center;
+  border-radius: var(--radius);
+  padding: 1.25rem .75rem;
+  border: 2px solid transparent;
+}
+
+.grade-box__label {
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--color-muted);
+  margin-bottom: .4rem;
+}
+
+.grade-box__value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+/* Colour the grade boxes by letter grade.
+   We rely on a data attribute set in the template — instead, we just use
+   a single colour scheme that works for all grades (the AI explanation
+   provides the nuance). */
+.grade-box--letter   { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
+.grade-box--numeric  { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
+.grade-box--percentage { background: #fff7ed; border-color: #fed7aa; color: #c2410c; }
+
+/* --- Explanation box --------------------------------------- */
+.explanation-box {
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.explanation-box__title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: .6rem;
+  color: var(--color-text);
+}
+
+.explanation-box__text {
+  line-height: 1.75;
+  white-space: pre-wrap;   /* preserve line breaks from the AI */
+}
+
+/* --- Reminder box ------------------------------------------ */
+.reminder-box {
+  background: var(--color-warning-bg);
+  border: 1.5px solid var(--color-warning-border);
+  border-radius: .5rem;
+  padding: .85rem 1rem;
+  font-size: .88rem;
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+}
+
+/* --- Result actions ---------------------------------------- */
+.result-actions { text-align: center; }

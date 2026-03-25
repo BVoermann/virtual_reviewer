@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Virtual Reviewer{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'reviewer/css/main.css' %}">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <span class="site-title">Virtual Reviewer</span>
+      <span class="site-subtitle">KI-gestützte Erstbewertung von Studierendenarbeiten</span>
+    </div>
+  </header>
+
+  <main class="container">
+
+    {# Django messages (errors, warnings) #}
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="message message--{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      Virtual Reviewer — nur zur Orientierung, kein Ersatz für menschliche Beurteilung.
+    </div>
+  </footer>
+
+</body>
+</html>

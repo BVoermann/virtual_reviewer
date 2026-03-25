@@ -1,0 +1,46 @@
+{% extends "reviewer/base.html" %}
+
+{% block title %}Hinweis — Virtual Reviewer{% endblock %}
+
+{% block content %}
+<div class="card disclaimer-card">
+
+  <h1 class="card__title">Wichtiger Hinweis</h1>
+
+  <div class="disclaimer-icon">⚠️</div>
+
+  <div class="disclaimer-text">
+    <p>
+      Dieses Tool erstellt mithilfe künstlicher Intelligenz eine <strong>erste, orientierende
+      Einschätzung</strong> der Qualität einer eingereichten Studierendenarbeit.
+    </p>
+
+    <p>
+      Die KI-Bewertung ist <strong>kein Ersatz für eine menschliche Beurteilung</strong> und
+      darf <strong>nicht als alleinige Grundlage für eine Benotung</strong> herangezogen werden.
+      Modelle können Fehler machen, Kontext falsch einschätzen oder wichtige fachliche
+      Nuancen übersehen.
+    </p>
+
+    <p>
+      Bitte nutzen Sie das Ergebnis ausschließlich als <em>erste Orientierung</em> und
+      treffen Sie Ihre endgültige Benotungsentscheidung stets auf Basis Ihrer eigenen,
+      sorgfältigen Lektüre der Arbeit.
+    </p>
+
+    <p>
+      Darüber hinaus ist zu beachten, dass das hochgeladene Dokument zur Verarbeitung an
+      einen externen KI-Dienst (OpenRouter) übertragen wird. Stellen Sie sicher, dass dies
+      mit den datenschutzrechtlichen Vorgaben Ihrer Institution vereinbar ist.
+    </p>
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn--primary btn--large">
+      Ich habe den Hinweis gelesen und werde die KI-Bewertung nur als erste Orientierung nutzen.
+    </button>
+  </form>
+
+</div>
+{% endblock %}

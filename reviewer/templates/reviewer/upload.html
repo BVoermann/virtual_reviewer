@@ -1,0 +1,86 @@
+{% extends "reviewer/base.html" %}
+
+{% block title %}Dokument hochladen — Virtual Reviewer{% endblock %}
+
+{% block content %}
+<div class="card">
+
+  <h1 class="card__title">Arbeit zur Bewertung einreichen</h1>
+  <p class="card__subtitle">
+    Laden Sie die Studierendenarbeit hoch und beschreiben Sie die gestellte Aufgabe.
+    Die KI liest das Dokument und gibt eine erste Einschätzung der Qualität.
+  </p>
+
+  <form method="post" enctype="multipart/form-data" class="upload-form">
+    {% csrf_token %}
+
+    {# --- Document upload -------------------------------------------------- #}
+    <div class="form-group">
+      <label class="form-label" for="document">
+        Dokument hochladen
+        <span class="form-hint">PDF, DOCX, ODT oder TXT · max. 20 MB</span>
+      </label>
+      <input
+        type="file"
+        id="document"
+        name="document"
+        class="form-input form-input--file"
+        accept=".pdf,.docx,.odt,.txt,.md"
+        required
+      >
+    </div>
+
+    {# --- Assignment description ------------------------------------------- #}
+    <div class="form-group">
+      <label class="form-label" for="assignment_description">
+        Aufgabenbeschreibung
+        <span class="form-hint">
+          Was sollten die Studierenden tun? Je präziser, desto besser die Bewertung.
+        </span>
+      </label>
+      <textarea
+        id="assignment_description"
+        name="assignment_description"
+        class="form-input form-input--textarea"
+        rows="8"
+        placeholder="Beispiel: Schreiben Sie einen 5-seitigen Essay über die Auswirkungen der Digitalisierung auf den Arbeitsmarkt. Berücksichtigen Sie dabei aktuelle empirische Studien und argumentieren Sie für eine klare These."
+        required
+      ></textarea>
+    </div>
+
+    {# --- Model selection -------------------------------------------------- #}
+    <div class="form-group">
+      <label class="form-label" for="model">
+        KI-Modell
+        <span class="form-hint">Wählen Sie das Modell, das für die Bewertung verwendet werden soll.</span>
+      </label>
+      <select id="model" name="model" class="form-input form-input--select" required>
+        <option value="" disabled selected>— Modell auswählen —</option>
+        {% for model_id, model_name in models %}
+          <option value="{{ model_id }}">{{ model_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    {# --- Submit ------------------------------------------------------------ #}
+    <div class="form-actions">
+      <button type="submit" class="btn btn--primary btn--large" id="submit-btn">
+        Arbeit bewerten lassen
+      </button>
+      <p class="form-hint form-hint--center" id="loading-hint" style="display:none;">
+        Die KI liest das Dokument … das kann einige Sekunden dauern.
+      </p>
+    </div>
+
+  </form>
+</div>
+
+<script>
+  // Show a loading message while the form is being submitted
+  document.querySelector(".upload-form").addEventListener("submit", function () {
+    document.getElementById("submit-btn").disabled = true;
+    document.getElementById("submit-btn").textContent = "Bitte warten …";
+    document.getElementById("loading-hint").style.display = "block";
+  });
+</script>
+{% endblock %}

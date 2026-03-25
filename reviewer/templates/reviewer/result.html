@@ -1,0 +1,63 @@
+{% extends "reviewer/base.html" %}
+
+{% block title %}Bewertungsergebnis — Virtual Reviewer{% endblock %}
+
+{% block content %}
+<div class="card">
+
+  <h1 class="card__title">Bewertungsergebnis</h1>
+  <p class="card__subtitle">
+    Datei: <strong>{{ filename }}</strong> &middot;
+    Modell: <em>{{ result.model_used }}</em>
+  </p>
+
+  {# ------------------------------------------------------------------ #}
+  {# Grade display — three parallel systems side by side               #}
+  {# ------------------------------------------------------------------ #}
+  <div class="grade-grid">
+
+    <div class="grade-box grade-box--letter">
+      <div class="grade-box__label">Buchstabennote</div>
+      <div class="grade-box__value">{{ result.letter_grade }}</div>
+    </div>
+
+    <div class="grade-box grade-box--numeric">
+      <div class="grade-box__label">Numerische Note</div>
+      <div class="grade-box__value">{{ result.numeric_grade }}</div>
+    </div>
+
+    <div class="grade-box grade-box--percentage">
+      <div class="grade-box__label">Prozentbereich</div>
+      <div class="grade-box__value">{{ result.percentage }}</div>
+    </div>
+
+  </div>
+
+  {# ------------------------------------------------------------------ #}
+  {# AI explanation                                                      #}
+  {# ------------------------------------------------------------------ #}
+  <div class="explanation-box">
+    <h2 class="explanation-box__title">Begründung der KI</h2>
+    <p class="explanation-box__text">{{ result.explanation }}</p>
+  </div>
+
+  {# ------------------------------------------------------------------ #}
+  {# Disclaimer reminder                                                 #}
+  {# ------------------------------------------------------------------ #}
+  <div class="reminder-box">
+    <strong>Hinweis:</strong> Diese Bewertung wurde von einer KI erstellt und dient
+    ausschließlich als erste Orientierung. Bitte lesen Sie die Arbeit selbst, bevor
+    Sie eine endgültige Note vergeben.
+  </div>
+
+  {# ------------------------------------------------------------------ #}
+  {# Navigation                                                          #}
+  {# ------------------------------------------------------------------ #}
+  <div class="result-actions">
+    <a href="{% url 'reviewer:upload' %}" class="btn btn--primary">
+      Weitere Arbeit bewerten
+    </a>
+  </div>
+
+</div>
+{% endblock %}
