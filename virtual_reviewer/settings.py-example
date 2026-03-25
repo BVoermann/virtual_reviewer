@@ -15,15 +15,7 @@ SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 DEBUG = True
 
-# Comma-separated list of allowed hostnames, e.g.:
-# ALLOWED_HOSTS=virtualreviewer.digi-teach.com,localhost
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "*").split(",")
-
-# Django checks the Origin header on POST requests against this list.
-# Must include every domain the site is served from (with scheme).
-CSRF_TRUSTED_ORIGINS = os.environ.get(
-    "CSRF_TRUSTED_ORIGINS", "http://localhost:8000"
-).split(",")
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
