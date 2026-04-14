@@ -60,10 +60,11 @@ a { color: var(--color-primary); }
   padding: 1rem 0;
 }
 
-.site-header .container {
+.site-header__inner {
   display: flex;
   flex-direction: column;
-  gap: .15rem;
+  align-items: center;
+  gap: 0.2rem;
 }
 
 .site-title {

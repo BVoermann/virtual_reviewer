@@ -1,0 +1,36 @@
+{% extends "reviewer/base.html" %}
+
+{% block title %}Anmelden — Virtual Reviewer{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 420px; margin: 0 auto;">
+
+  <h1 class="card__title">Anmelden</h1>
+
+  {% if form.errors %}
+    <ul class="messages">
+      <li class="message message--error">Benutzername oder Passwort ungültig.</li>
+    </ul>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}">
+
+    <div style="margin-bottom: 1rem;">
+      <label for="id_username" style="display: block; margin-bottom: 0.25rem; font-weight: 600;">Benutzername</label>
+      <input type="text" name="username" id="id_username" autofocus required
+             style="width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; box-sizing: border-box;">
+    </div>
+
+    <div style="margin-bottom: 1.5rem;">
+      <label for="id_password" style="display: block; margin-bottom: 0.25rem; font-weight: 600;">Passwort</label>
+      <input type="password" name="password" id="id_password" required
+             style="width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; box-sizing: border-box;">
+    </div>
+
+    <button type="submit" class="btn btn--primary btn--large" style="width: 100%;">Anmelden</button>
+  </form>
+
+</div>
+{% endblock %}

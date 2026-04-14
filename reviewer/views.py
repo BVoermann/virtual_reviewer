@@ -11,6 +11,7 @@ State between steps is kept in the server-side session (no database needed).
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .document_parser import extract_text
 from .ai_client import grade_document, AVAILABLE_MODELS
@@ -20,6 +21,7 @@ from .ai_client import grade_document, AVAILABLE_MODELS
 # Step 1 — Disclaimer
 # ---------------------------------------------------------------------------
 
+@login_required
 def disclaimer(request):
     """
     GET  – show the disclaimer page.
@@ -36,6 +38,7 @@ def disclaimer(request):
 # Step 2 — Upload
 # ---------------------------------------------------------------------------
 
+@login_required
 def upload(request):
     """
     GET  – show the upload form.
@@ -109,6 +112,7 @@ def upload(request):
 # Step 3 — Result
 # ---------------------------------------------------------------------------
 
+@login_required
 def result(request):
     """
     Display the grading result that was stored in the session.
