@@ -106,10 +106,12 @@ def grade_document(document_text: str, assignment_description: str, model: str) 
         "You MUST respond with a valid JSON object and NOTHING else. "
         "The JSON must have exactly these two keys:\n"
         '  "numeric_grade": one of 1.0, 1.3, 1.7, 2.0, 2.3, 2.7, 3.0, 3.3, 3.7, 4.0, 4.3, 4.7, 5.0\n'
-        '  "explanation": 2–4 sentences explaining the grade\n\n'
+        '  "explanation": 5-10 sentences explaining the grade\n\n'
         "Base the grade solely on how well the submission fulfils the assignment. "
         "If the document is empty or entirely off-topic, assign 5.0. "
         "Write the explanation in the same language as the submission."
+        "Never actually write the grade, the numerical value or the "
+        "descriptor for the numerical value in your explanation"
     )
 
     user_prompt = (
