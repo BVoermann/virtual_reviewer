@@ -1,0 +1,36 @@
+{% extends "reviewer/base.html" %}
+
+{% block title %}Hochlademodus wählen — Virtual Reviewer{% endblock %}
+
+{% block content %}
+<div class="card mode-select-card">
+
+  <h1 class="card__title">Wie möchten Sie vorgehen?</h1>
+  <p class="card__subtitle">
+    Wählen Sie, ob Sie eine einzelne Arbeit oder mehrere Einreichungen auf einmal bewerten möchten.
+  </p>
+
+  <div class="mode-choice">
+
+    <a href="{% url 'reviewer:upload' %}" class="mode-card">
+      <div class="mode-card__icon-wrap">📄</div>
+      <div class="mode-card__title">Einzelnes Dokument</div>
+      <div class="mode-card__desc">
+        Laden Sie eine einzelne Studierendenarbeit hoch und beschreiben Sie die Aufgabenstellung manuell.
+      </div>
+      <div class="mode-card__cta">Auswählen →</div>
+    </a>
+
+    <a href="{% url 'reviewer:upload_zip' %}" class="mode-card">
+      <div class="mode-card__icon-wrap">📦</div>
+      <div class="mode-card__title">ZIP-Datei hochladen</div>
+      <div class="mode-card__desc">
+        Laden Sie eine ZIP-Datei mit mehreren Frage-Antwort-Paaren hoch. Alle Einreichungen werden automatisch bewertet.
+      </div>
+      <div class="mode-card__cta">Auswählen →</div>
+    </a>
+
+  </div>
+
+</div>
+{% endblock %}

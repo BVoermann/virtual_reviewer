@@ -1,0 +1,73 @@
+{% extends "reviewer/base.html" %}
+
+{% block title %}ZIP-Datei hochladen — Virtual Reviewer{% endblock %}
+
+{% block content %}
+<div class="card">
+
+  <h1 class="card__title">ZIP-Datei hochladen</h1>
+  <p class="card__subtitle">
+    Laden Sie eine ZIP-Datei mit Studierendeneinreichungen hoch. Das Archiv muss pro Studierenden
+    einen Ordner enthalten, in dem je eine <code>_questiontext.pdf</code> (Aufgabenstellung) und
+    eine <code>_response.pdf</code> (Antwort) liegen.
+  </p>
+
+  <form method="post" enctype="multipart/form-data" class="upload-form">
+    {% csrf_token %}
+
+    {# --- ZIP upload -------------------------------------------------- #}
+    <div class="form-group">
+      <label class="form-label" for="zipfile">
+        ZIP-Datei hochladen
+        <span class="form-hint">Nur .zip-Dateien · max. 20 MB</span>
+      </label>
+      <input
+        type="file"
+        id="zipfile"
+        name="zipfile"
+        class="form-input form-input--file"
+        accept=".zip"
+        required
+      >
+    </div>
+
+    {# --- Model selection -------------------------------------------------- #}
+    <div class="form-group">
+      <label class="form-label" for="model">
+        KI-Modell
+        <span class="form-hint">Wird für alle Einreichungen in der ZIP-Datei verwendet.</span>
+      </label>
+      <select id="model" name="model" class="form-input form-input--select" required>
+        <option value="" disabled selected>— Modell auswählen —</option>
+        {% for model_id, model_name in models %}
+          <option value="{{ model_id }}">{{ model_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    {# --- Submit ------------------------------------------------------------ #}
+    <div class="form-actions">
+      <button type="submit" class="btn btn--primary btn--large" id="submit-btn">
+        Alle Arbeiten bewerten lassen
+      </button>
+      <p class="form-hint form-hint--center" id="loading-hint" style="display:none;">
+        Die KI bewertet alle Einreichungen … das kann je nach Anzahl einige Minuten dauern.
+      </p>
+    </div>
+
+  </form>
+
+  <div class="mode-back">
+    <a href="{% url 'reviewer:mode' %}">&larr; Zurück zur Modusauswahl</a>
+  </div>
+
+</div>
+
+<script>
+  document.querySelector(".upload-form").addEventListener("submit", function () {
+    document.getElementById("submit-btn").disabled = true;
+    document.getElementById("submit-btn").textContent = "Bitte warten …";
+    document.getElementById("loading-hint").style.display = "block";
+  });
+</script>
+{% endblock %}

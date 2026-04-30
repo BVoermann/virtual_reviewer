@@ -7,3 +7,4 @@ Dockerfile
 virtual_reviewer/settings.py
 reviewer/__pycache__/*
 virtual_reviewer/__pycache__/*
+example/

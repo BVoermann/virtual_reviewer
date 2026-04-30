@@ -4,12 +4,10 @@ from . import views
 app_name = "reviewer"
 
 urlpatterns = [
-    # Step 1: Disclaimer
-    path("", views.disclaimer, name="disclaimer"),
-
-    # Step 2: Upload document + assignment description
-    path("upload/", views.upload, name="upload"),
-
-    # Step 3: Show AI grading result
-    path("ergebnis/", views.result, name="result"),
+    path("",               views.disclaimer, name="disclaimer"),
+    path("modus/",         views.mode,        name="mode"),
+    path("upload/",        views.upload,      name="upload"),
+    path("upload-zip/",    views.upload_zip,  name="upload_zip"),
+    path("ergebnis/",      views.result,      name="result"),
+    path("ergebnisse/",    views.zip_result,  name="zip_result"),
 ]

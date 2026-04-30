@@ -1,0 +1,59 @@
+{% extends "reviewer/base.html" %}
+
+{% block title %}Bewertungsergebnisse — Virtual Reviewer{% endblock %}
+
+{% block content %}
+<div class="card">
+
+  <h1 class="card__title">Bewertungsergebnisse</h1>
+  <p class="card__subtitle">
+    Datei: <strong>{{ filename }}</strong>
+    &middot; {{ results|length }} Einreichung{{ results|length|pluralize:"en" }} bewertet
+    {% with first=results.0 %}
+      {% if first and first.result %}
+        &middot; Modell: <em>{{ first.result.model_used }}</em>
+      {% endif %}
+    {% endwith %}
+  </p>
+
+  <div class="reminder-box" style="margin-bottom: 1.75rem;">
+    <strong>Hinweis:</strong> Diese Bewertungen wurden von einer KI erstellt und dienen
+    ausschließlich als erste Orientierung. Bitte lesen Sie jede Arbeit selbst, bevor
+    Sie eine endgültige Note vergeben.
+  </div>
+
+  <div class="zip-result-list">
+    {% for entry in results %}
+      <div class="zip-result-entry{% if entry.error %} zip-result-entry--error{% endif %}">
+
+        <div class="zip-result-entry__header">
+          <div class="zip-result-entry__student">{{ entry.student }}</div>
+          <div class="zip-result-entry__question">{{ entry.question }}</div>
+        </div>
+
+        <div class="zip-result-entry__body">
+          {% if entry.error %}
+            <p class="zip-result-entry__error-msg">
+              Fehler bei der Bewertung: {{ entry.error }}
+            </p>
+          {% else %}
+            <p class="explanation-box__text">{{ entry.result.explanation }}</p>
+          {% endif %}
+        </div>
+
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="result-actions" style="margin-top: 2rem;">
+    <a href="{% url 'reviewer:upload_zip' %}" class="btn btn--primary">
+      Weitere ZIP-Datei bewerten
+    </a>
+    &ensp;
+    <a href="{% url 'reviewer:mode' %}" class="btn btn--secondary">
+      Zur Modusauswahl
+    </a>
+  </div>
+
+</div>
+{% endblock %}
